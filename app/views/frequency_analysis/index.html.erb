@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1>Частотні таблиці для української та англійської мов:</h1>
+  <p>Частотні таблиці для української мови: оанвиіетклрсудмпбгзяєжїйхцчшщьюф</p>
+  <p>Частотні таблиці для англійської мови: etaoinshrdlcumwfgypbvkjxqz</p>
+  <%- if @frequency_analysis %>
+    <p>Розрахований частотний аналіз: <%= @frequency_analysis %></p>
+  <% end %>
+  <%= form_tag(compute_frequency_analysis_index_path, method: :post) do -%>
+    <p class="text-bold mt">Введіть текст для обчислення частотного аналізу</p>
+    <div>
+      <%= text_area_tag 'body', nil, size: '80x15' %>
+    </div>
+    <div class="mt"><%= submit_tag 'Розрахувати' %></div>
+  <% end -%>
+</div>
