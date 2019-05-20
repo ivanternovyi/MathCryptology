@@ -1,0 +1,19 @@
+<p>
+  <%= link_to 'Головна', root_path %>
+</p>
+<div class="text-center">
+  <h1>Алгоритм дешифрування шифру зсуву на основі частотного аналізу:</h1>
+  <p>Частотні таблиці для англійської мови: etaoinshrdlcumwfgypbvkjxqz</p>
+  <% if @decrypted %>
+    <p>Зашифрований текст: <br/> <%= @text %></p>
+    <p>Розшифрований текст: <br/> <%= @decrypted %></p>
+  <% end %>
+
+  <%= form_tag(compute_decrypt_ceaser_index_path, method: :post) do -%>
+    <p class="text-bold mt">Введіть зашифрований текст</p>
+    <div class="mt">
+      <%= text_area_tag 'body', nil, size: '80x15' %>
+    </div>
+    <div class="mt"><%= submit_tag 'Розшифрувати' %></div>
+  <% end -%>
+</div>

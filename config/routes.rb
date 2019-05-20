@@ -14,4 +14,10 @@ Rails.application.routes.draw do
       post :compute
     end
   end
+
+  resources :decrypt_ceaser, only: :index do
+    collection do
+      post :compute
+    end
+  end
 end
