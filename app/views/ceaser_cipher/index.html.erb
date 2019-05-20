@@ -1,0 +1,28 @@
+<p>
+  <%= link_to 'Головна', root_path %>
+</p>
+<div class="text-center">
+  <h1>Шифр зсуву для латинського та українсього алфавітів:</h1>
+
+  <% if @cipher %>
+    <p>Текст до шифрування: <br/> <%= @text %></p>
+    <p>Зсув: <br/> <%= @shift %></p>
+    <p>Результат шифрування: <br/> <%= @cipher %></p>
+  <% end %>
+
+  <%= form_tag(compute_ceaser_cipher_index_path, method: :post) do -%>
+    <p class="text-bold mt">Введіть текст для шифрування</p>
+    <div class="mt">
+      Мова:
+      <%= select_tag 'lang', options_for_select(["ua", "en"]), include_blank: false %>
+    </div>
+    <div class="mt">
+      Зсув:
+      <%= number_field_tag 'shift', include_blank: false %>
+    </div>
+    <div class="mt">
+      <%= text_area_tag 'body', nil, size: '80x15' %>
+    </div>
+    <div class="mt"><%= submit_tag 'Зашифрувати' %></div>
+  <% end -%>
+</div>

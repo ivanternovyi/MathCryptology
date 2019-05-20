@@ -8,4 +8,10 @@ Rails.application.routes.draw do
       post :compute
     end
   end
+
+  resources :ceaser_cipher, only: :index do
+    collection do
+      post :compute
+    end
+  end
 end
