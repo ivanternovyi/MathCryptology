@@ -9,6 +9,14 @@
   <% end %>
 
   <%= form_tag(compute_vigenere_cipher_index_path, method: :post) do -%>
+    <div class="mt">
+      Мова:
+      <%= select_tag 'lang', options_for_select(["ua", "en"]), include_blank: false %>
+    </div>
+    <p class="text-bold mt">Введіть ключ(пр. 1,2,3)</p>
+    <div class="mt">
+      <%= text_field_tag 'seq', nil, width: '40' %>
+    </div>
     <p class="text-bold mt">Введіть текст</p>
     <div class="mt">
       <%= text_area_tag 'body', nil, size: '80x15' %>

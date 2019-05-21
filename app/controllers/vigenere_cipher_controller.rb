@@ -4,7 +4,9 @@ class VigenereCipherController < ApplicationController
   end
 
   def compute
-    @encrypted = VigenereCipherService.new(vigenere_params[:body]).call
+    @encrypted = VigenereCipherService.new(vigenere_params[:body],
+                                           vigenere_params[:seq],
+                                           vigenere_params[:lang]).call
     Result.create(before: vigenere_params[:body], after: @encrypted)
     redirect_to action: 'index', show: true
   end
@@ -12,6 +14,6 @@ class VigenereCipherController < ApplicationController
   private
 
   def vigenere_params
-    params.permit(:body)
+    params.permit(:body, :seq, :lang)
   end
 end
