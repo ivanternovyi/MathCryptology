@@ -1,13 +1,22 @@
 require 'prime'
 
-# TODO add binary expknentiation algorithm
+class Integer
+  # a^b mod c
+  def self.mod_pow( base, power, mod)
+    res = 1
+    while power > 0
+      res = (res * base) % mod if power & 1 == 1
+      base = base ** 2 % mod
+      power >>= 1
+    end
+    res
+  end
+end
+
 class RsaCipherService
   def initialize(body)
-    # raise ArgumentError, 'P or Q is not prime' unless p.prime? && q.prime?
     @p = 7
     @q = 17
-    # @p = p
-    # @q = q
     @body = body.downcase
   end
 
@@ -23,7 +32,7 @@ class RsaCipherService
   def encrypt(data)
     res = ''
     data.each_char do |ch|
-      res += ((ch.ord**generate_keys[:e]) % generate_keys[:n]).chr
+      res += Integer.mod_pow(ch.ord, generate_keys[:e], generate_keys[:n]).chr
     end
     res
   end
@@ -31,7 +40,7 @@ class RsaCipherService
   def decrypt(data)
     res = ''
     data.each_char do |ch|
-      res += ((ch.ord**generate_keys[:d]) % generate_keys[:n]).chr
+      res += Integer.mod_pow(ch.ord, generate_keys[:d], generate_keys[:n]).chr
     end
     res
   end
@@ -50,6 +59,7 @@ class RsaCipherService
 
   def extended_gcd(a, b)
     return [0, 1] if (a % b).zero?
+
     x, y = extended_gcd(b, a % b)
     [y, x - y * (a / b)]
   end
@@ -63,6 +73,7 @@ class RsaCipherService
 
   def find_coprime(a, z)
     return z if gcd(a, z) == 1
+
     find_coprime(a, z + 1)
   end
 end
