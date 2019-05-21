@@ -1,0 +1,18 @@
+<p>
+  <%= link_to 'Головна', root_path %>
+</p>
+<div class="text-center">
+  <h1>Шифр Віженера для латинського та українсього алфавітів:</h1>
+  <% if @show %>
+    <p>Текст до: <br/> <%= Result.last.before %></p>
+    <p>Текст після: <br/> <%= Result.last.after %></p>
+  <% end %>
+
+  <%= form_tag(compute_vigenere_cipher_index_path, method: :post) do -%>
+    <p class="text-bold mt">Введіть текст</p>
+    <div class="mt">
+      <%= text_area_tag 'body', nil, size: '80x15' %>
+    </div>
+    <div class="mt"><%= submit_tag 'Шифрувати' %></div>
+  <% end -%>
+</div>

@@ -20,4 +20,10 @@ Rails.application.routes.draw do
       post :compute
     end
   end
+
+  resources :vigenere_cipher, only: :index do
+    collection do
+      post :compute
+    end
+  end
 end
