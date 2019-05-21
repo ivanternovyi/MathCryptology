@@ -4,10 +4,10 @@
 <div class="text-center">
   <h1>Шифр зсуву для латинського та українсього алфавітів:</h1>
 
-  <% if @cipher %>
-    <p>Текст до шифрування: <br/> <%= @text %></p>
+  <% if @show %>
+    <p>Текст до шифрування: <br/> <%= Result.last.before %></p>
     <p>Зсув: <br/> <%= @shift %></p>
-    <p>Результат шифрування: <br/> <%= @cipher %></p>
+    <p>Результат шифрування: <br/> <%= Result.last.after %></p>
   <% end %>
 
   <%= form_tag(compute_ceaser_cipher_index_path, method: :post) do -%>

@@ -1,8 +1,7 @@
 class CeaserCipherController < ApplicationController
   def index
-    @cipher = params[:cipher]
-    @text = params[:text]
     @shift = params[:shift]
+    @show = params[:show]
   end
 
   def compute
@@ -10,10 +9,11 @@ class CeaserCipherController < ApplicationController
                                       ceaser_params[:lang],
                                       ceaser_params[:shift]
                                      ).call
+    Result.create(before: ceaser_params[:body], after: @cipher)
+
     redirect_to action: 'index',
-                cipher: @cipher,
-                text: ceaser_params[:body],
-                shift: ceaser_params[:shift]
+                shift: ceaser_params[:shift],
+                show: true
   end
 
   private

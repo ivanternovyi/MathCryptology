@@ -4,9 +4,9 @@
 <div class="text-center">
   <h1>Алгоритм дешифрування шифру зсуву на основі частотного аналізу:</h1>
   <p>Частотні таблиці для англійської мови: etaoinshrdlcumwfgypbvkjxqz</p>
-  <% if @decrypted %>
-    <p>Зашифрований текст: <br/> <%= @text %></p>
-    <p>Розшифрований текст: <br/> <%= @decrypted %></p>
+  <% if @show %>
+    <p>Зашифрований текст: <br/> <%= Result.last.before %></p>
+    <p>Розшифрований текст: <br/> <%= Result.last.after %></p>
   <% end %>
 
   <%= form_tag(compute_decrypt_ceaser_index_path, method: :post) do -%>
