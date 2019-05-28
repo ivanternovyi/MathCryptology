@@ -2,14 +2,15 @@ require 'prime'
 
 class Integer
   # a^b mod c
-  def self.mod_pow( base, power, mod)
-    res = 1
-    while power > 0
-      res = (res * base) % mod if power & 1 == 1
-      base = base ** 2 % mod
-      power >>= 1
-    end
-    res
+  def self.mod_pow(base, exp, mod)
+    return 1 if exp.zero?
+    return base % mod if exp == 1
+
+    res = mod_pow(base, exp/2, mod)
+    res = (res * res) % mod
+
+    return res if exp % 2 == 0
+    ((base % mod) * res) % mod
   end
 end
 
